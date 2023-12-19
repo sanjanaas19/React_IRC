@@ -1,10 +1,31 @@
-export { default as Home } from './Home';
-export { default as Products } from './Products';
-export { default as Product } from './Product';
-export { default as AboutPage } from './AboutPage';
-export { default as ContactPage } from './ContactPage';
-export { default as Cart } from './Cart';
-export { default as Login } from './Login';
-export { default as Register } from './Register';
-export { default as Checkout } from './Checkout';
-export { default as PageNotFound } from './PageNotFound';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+
+import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound } from "./pages"
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product" element={<Products />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="*" element={<PageNotFound />} />
+        <Route path="/product/*" element={<PageNotFound />} />
+      </Routes>
+    </Provider>
+  </BrowserRouter>
+);
